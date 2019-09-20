@@ -1,6 +1,6 @@
 # bashFunc
 
-A library for functional programming in bash - map, filter, reduce and more.
+A small library for functional programming in bash - map, filter, reduce and more.
 
 ## API
 
@@ -28,8 +28,8 @@ arguments.
 These two commands are equal:
 
 ```bash
-map '( echo $(( $1 + 2 )) )' 1 2 3 4 5
-map '( echo $(( $1 + 2 )) )' < <(printf "%s\n" 1 2 3 4 5)
+map '( echo $(( $1 + 10 )) )' 1 2 3 4 5
+map '( echo $(( $1 + 10 )) )' < <(printf "%s\n" 1 2 3 4 5)
 # 11
 # 12
 # 13
@@ -49,7 +49,7 @@ reduce '( echo $(( $1 + $2 )) )' < <(filter '( (( $1 % 2 )) )' < <(map '( echo $
 #### Map
 
 ```bash
-map '( echo $(( $1 + 2 )) )' < <(printf "%s\n" 1 2 3 4 5)
+map '( echo $(( $1 + 10 )) )' < <(printf "%s\n" 1 2 3 4 5)
 # 11
 # 12
 # 13

@@ -1,7 +1,7 @@
 # vim: set filetype=sh :
 
 map() {
-  local callback readElements elements
+  local callback elements
   if type "$1" > /dev/null 2>&1; then
     callback="$1"
   else
@@ -27,7 +27,7 @@ map() {
 # 15
 
 filter() {
-  local callback readElements elements
+  local callback elements
   if type "$1" > /dev/null 2>&1; then
     callback="$1"
   else
@@ -51,7 +51,7 @@ filter() {
 # 5
 
 reduce() {
-  local callback readElements elements accelerator
+  local callback elements accelerator
   if type "$1" > /dev/null 2>&1; then
     callback="$1"
   else
@@ -75,7 +75,7 @@ reduce() {
 # 20
 
 forEach() {
-  local callback readElements elements
+  local callback elements
   if type "$1" > /dev/null 2>&1; then
     callback="$1"
   else
@@ -96,7 +96,7 @@ forEach() {
 # forEach '( notify-send $1 )' < <(printf "%s\n" 1 2 3 4 5)
 
 some() {
-  local callback readElements elements
+  local callback elements
   if type "$1" > /dev/null 2>&1; then
     callback="$1"
   else
