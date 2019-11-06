@@ -1,20 +1,22 @@
 # bashFunc
 
-A small library for functional programming in bash - map, filter, reduce and more.
+A small Bash library for functional programming. Right now it contains **map**,
+**filter**, **reduce**, **forEach**, **some** and **split**.
 
 ## API
 
 #### Callback
 
-The callback is always the first argument and you can either use a normal
-function as() argument or enter a string with the function body inside `()`, like
-_lambdas_.  
-These two commands are equal:
+The callback is always the first argument and you can either use normal
+functions or a string with the function body inside of `()` as first argument.  
+These two code blocks are equal:
 
 ```bash
 reduce '( echo $(( $1 + $2 )) )' 0 1 2 3 4 5
 # 15
+```
 
+```bash
 add() { echo $(($1 + $2)); }
 reduce add 0 1 2 3 4 5
 # 15
@@ -22,10 +24,10 @@ reduce add 0 1 2 3 4 5
 
 #### Arguments
 
-You can either use _positional arguments_ **or** the function reads lines from
-the standard input like the native `mapfile` command does and takes those as
-arguments.  
-These two commands are equal:
+As data input you can either use _positional arguments_ **or** the function
+reads lines from the standard input - like the native `mapfile` command does -
+and takes those as arguments. The following example demostrates the two
+alternatives:
 
 ```bash
 map '( echo $(( $1 + 10 )) )' 1 2 3 4 5
@@ -38,6 +40,8 @@ map '( echo $(( $1 + 10 )) )' < <(printf "%s\n" 1 2 3 4 5)
 ```
 
 #### Compatibility
+
+You can of course _chain_ different commands together:
 
 ```bash
 reduce '( echo $(( $1 + $2 )) )' < <(filter '( (( $1 % 2 )) )' < <(map '( echo $(( $1 + 10 )) )' 1 2 3 4 5))
@@ -95,8 +99,8 @@ some '((( $1 % 2 )))' < <(printf "%s\n" 1 2 3 4 5)
 
 #### Split
 
-The API for this function is fundamentally different. The first argument is a
-_string_ and the second argument takes a _seperator_.
+The API for this function is quite different. The first argument is a _string_
+and the second argument takes a _seperator_.
 
 ```bash
 split 'Hello,World,Good,Evening' ','
